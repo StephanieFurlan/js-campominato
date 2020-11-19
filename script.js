@@ -1,19 +1,23 @@
 
-var level = parseInt(document.getElementById("level").value);
-var points = parseInt(document.getElementById("points").innerHTML);
-var pcMoves;
-var userMoves = [];
+var level, poitns, pcMoves, userMoves;
+
 
 
 function randomGenerator(min, max) {
    return Math.floor(Math.random() * max) + min;
 }
 
-function displayBoard() {
-   pcMoves = agentMoves();
-   document.getElementById("pcMoves").innerHTML = pcMoves.toString();
+function initializeGame() {
    level = parseInt(document.getElementById("level").value);
+   pcMoves = agentMoves();
+   points = 0;
+   document.getElementById("points").innerHTML = points;
+   userMoves = [];
 
+   // just to verify if we play ok
+   document.getElementById("pcMoves").innerHTML = pcMoves.toString();
+
+   // customize board depend on chosen level
    var board = document.getElementById("board");
    board.innerHTML = "";
 
@@ -39,11 +43,19 @@ function showCell(id) {
    if (!userMoves.includes(cell)) {
       // check if user choose a pc pcMove
       if (pcMoves.includes(cell)){
+         // end game
          alert("YOU LOST");
       } else {
+         //valid move
          userMoves.push(cell);
+         points += 1;
          document.getElementById(id).style.backgroundColor = "red";
-         document.getElementById("points").innerHTML = points + 1;
+
+         if (points == level - 16) {
+            alert("YOU WON. YOUR SCORE IS " + points + "!");
+         }
+
+         document.getElementById("points").innerHTML = points;
       }
 
    } else {
