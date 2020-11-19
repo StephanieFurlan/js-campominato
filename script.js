@@ -2,9 +2,6 @@
 var level, poitns, pcMoves, userMoves, pointsDiv, board;
 
 
-
-
-
 function initializeGame() {
    // initialize game parameters
    level = parseInt(document.getElementById("level").value);
@@ -16,7 +13,6 @@ function initializeGame() {
    pointsDiv.innerHTML = "Score: " + points;
    pointsDiv.style.display = "block";
 
-
    // display custom board depend on chosen level
    board.innerHTML = "";
    board.style.visibility = "visible";
@@ -24,21 +20,23 @@ function initializeGame() {
    for (var i = 0; i < level; i++) {
       var cell = document.createElement("div");
       cell.setAttribute("id", "id" + (i + 1));
-      cell.addEventListener("click", showCellDelegate("id" + (i + 1)), false);
+      // add an event listner to every cell
+      cell.addEventListener("click", initializeCell("id" + (i + 1)), false);
       cell.innerHTML = "<span>" + (i + 1) + "</span>";
       cell.classList.add("cell");
       board.appendChild(cell);
    }
 }
 
-function showCellDelegate(id) {
+function initializeCell(id) {
+   // invoke function only when clicking
    return function(){
-        showCell(id)
+        checkCell(id)
     }
 }
 
-function showCell(id) {
-
+function checkCell(id) {
+   // checkCell
    var cell = parseInt(id.slice(2));
    if (!userMoves.includes(cell)) {
       // check if user choose a pc pcMove
