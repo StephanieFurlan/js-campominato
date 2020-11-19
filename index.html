@@ -4,20 +4,37 @@
       <meta charset="utf-8">
       <title></title>
       <link rel="stylesheet" href="style.css">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
    </head>
    <body>
-      <label for="level">Choose a level:</label>
-      <select name="level" id="level">
-         <option value="50">Level 1</option>
-         <option value="80">Level 2</option>
-         <option value="100">Level 3</option>
-      </select>
-      <button onClick="initializeGame()">Select Level</button>
-      <div id="pcMoves"></div>
-      <div id="userMoves"></div>
-      <div id="points"></div>
-      <div id="board">
-      </div>
+      <header>
+         <h1>Let's play CAMPOMINATO!</h1>
+      </header>
+      <main>
+         <div class="options">
+            <div>
+               <label for="level"><b>Choose a level:</b></label>
+               <select name="level" id="level">
+                  <option value="50">Level 1</option>
+                  <option value="80">Level 2</option>
+                  <option value="100">Level 3</option>
+               </select>
+               <button id="play-btn" onClick="initializeGame()">Play</button>
+            </div>
+
+
+         </div>
+
+         <div class="board-container">
+            <div id="board">
+            </div>
+         </div>
+
+      </main>
+      <div id="points">Scores: 0</div>
+
 
       <script src="script.js" charset="utf-8"></script>
    </body>
