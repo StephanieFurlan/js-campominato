@@ -1,25 +1,23 @@
 
-var level, poitns, pcMoves, userMoves;
+var level, poitns, pcMoves, userMoves, pointsDiv, board;
 
 
 
-function randomGenerator(min, max) {
-   return Math.floor(Math.random() * max) + min;
-}
+
 
 function initializeGame() {
-
+   // initialize game parameters
    level = parseInt(document.getElementById("level").value);
    pcMoves = agentMoves();
-   points = 0;
-   document.getElementById("points").innerHTML = points;
    userMoves = [];
+   board = document.getElementById("board");
+   points = 0;
+   pointsDiv = document.getElementById("points");
+   pointsDiv.innerHTML = "Score: " + points;
+   pointsDiv.style.display = "block";
 
-   // just to verify if we play ok
-   console.log(pcMoves.toString());
 
-   // customize board depend on chosen level
-   var board = document.getElementById("board");
+   // display custom board depend on chosen level
    board.innerHTML = "";
    board.style.visibility = "visible";
 
@@ -40,31 +38,31 @@ function showCellDelegate(id) {
 }
 
 function showCell(id) {
-   var cell = parseInt(id.slice(2));
 
+   var cell = parseInt(id.slice(2));
    if (!userMoves.includes(cell)) {
       // check if user choose a pc pcMove
       if (pcMoves.includes(cell)){
          // end game
-         alert("YOU LOST");
-
+         var message = "YOU LOST! YOU DID " + points + " POINTS!";
+         alert(message);
       } else {
          //valid move
          userMoves.push(cell);
+         //add points
          points += 1;
          document.getElementById(id).style.backgroundColor = "#45ada8";
 
          if (points == level - 16) {
             alert("YOU WON. YOUR SCORE IS " + points + "!");
          }
-
-         document.getElementById("points").innerHTML = points;
+         pointsDiv.innerHTML = points;
       }
 
    }
 }
 
-
+// 16 different random numbers
 function agentMoves() {
    //agent choose 16 cells
    var pcMoves = [];
@@ -75,4 +73,8 @@ function agentMoves() {
       }
    }
    return pcMoves;
+}
+
+function randomGenerator(min, max) {
+   return Math.floor(Math.random() * max) + min;
 }
