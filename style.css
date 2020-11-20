@@ -41,13 +41,30 @@ header {
    margin-left: 20px;
    padding: 20px 40px;
    font-size: 20px;
+   cursor: pointer;
 }
+
+#play-btn:active {
+   padding: 25px 45px;
+}
+
 
 .board-container {
    padding: 20px;
    margin: 0 10px;
-
+   position: relative;
 }
+
+#board {
+   width: 50%;
+   margin: 0 auto;
+   visibility: hidden;
+   display: flex;
+   flex-wrap: wrap;
+   background-color: #547980;
+   border: 1px solid black;
+}
+
 
 #points {
    text-align: center;
@@ -59,18 +76,10 @@ header {
    border-radius: 10px;
    border: 2px solid white;
    display: none;
+   color: white;
+   font-size: 30px;
 }
 
-#board {
-   width: 50%;
-   margin: 0 auto;
-   visibility: hidden;
-   display: flex;
-   flex-wrap: wrap;
-
-   background-color: #547980;
-   border: 1px solid black;
-}
 
 .cell {
    width: 10%;
@@ -79,6 +88,7 @@ header {
    display: flex;
    position: relative;
    border: 1px solid black;
+   cursor: pointer;
 }
 
 .cell span {
@@ -88,6 +98,21 @@ header {
    top: 50%;
    transform: translate(-50%, -50%);
    font-size: 20px;
+}
+
+#message-container {
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%);
+   width: 50%;
+   margin: 0 auto;
+   visibility: hidden;
+   padding: 20px;
+   background-color: white;
+   border-radius: 40px;
+   text-align: center;
+   font-size: 30px;
 }
 
 select:focus, button:focus {

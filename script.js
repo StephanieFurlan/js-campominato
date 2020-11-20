@@ -1,5 +1,5 @@
 
-var level, poitns, pcMoves, userMoves, pointsDiv, board;
+var level, poitns, pcMoves, userMoves, pointsDiv, board, msg;
 
 
 function initializeGame() {
@@ -12,6 +12,8 @@ function initializeGame() {
    pointsDiv = document.getElementById("points");
    pointsDiv.innerHTML = "Score: " + points;
    pointsDiv.style.display = "block";
+   msg = document.getElementById("message-container");
+   msg.style.visibility = "hidden";
 
    // display custom board depend on chosen level
    board.innerHTML = "";
@@ -43,7 +45,10 @@ function checkCell(id) {
       if (pcMoves.includes(cell)){
          // end game
          var message = "YOU LOST! YOU DID " + points + " POINTS!";
-         alert(message);
+         board.style.visibility = "hidden";
+         msg.innerHTML = message;
+         msg.style.visibility = "visible";
+
       } else {
          //valid move
          userMoves.push(cell);
@@ -52,11 +57,13 @@ function checkCell(id) {
          document.getElementById(id).style.backgroundColor = "#45ada8";
 
          if (points == level - 16) {
-            alert("YOU WON. YOUR SCORE IS " + points + "!");
+            var message = "YOU WON. YOUR SCORE IS " + points + "!";
+
          }
          pointsDiv.innerHTML = points;
       }
-
+   } else {
+      alert("Cell is already selected!")
    }
 }
 
